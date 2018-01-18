@@ -7,6 +7,7 @@ import {
 } from 'ionic-angular';
 import { ProfileProvider } from "../../providers/profile/profile";
 import { AuthProvider } from "../../providers/auth/auth";
+import { WelcomePage } from '../../pages/welcome/welcome';
 
 /**
  * Generated class for the ProfilePage page.
@@ -41,7 +42,7 @@ export class ProfilePage {
 
   logOut(): void {
     this.authProvider.logoutUser().then(() => {
-      this.navCtrl.setRoot("LoginPage");
+      this.navCtrl.setRoot(WelcomePage);
     });
   }
 

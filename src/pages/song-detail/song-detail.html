@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Detalles canción</ion-title>
   </ion-navbar>
 
@@ -17,8 +17,14 @@
 
   <ion-card >
     <ion-item center text-center>
-      <h2>{{currentSong?.title}}</h2> 
-      <p>{{currentSong?.category}}</p>
+      <h2><i><b>{{currentSong?.title}}</b></i></h2> 
+      <p>Tipo: {{currentSong?.category}}</p>
+      <ion-row>
+        <ion-col>
+          <p>Nota para hombres: {{currentSong?.male_note}}</p>
+          <p>Nota para mujeres: {{currentSong?.female_note}}</p>
+        </ion-col>
+      </ion-row>
     </ion-item>
 
     <ion-card-content >

@@ -17,6 +17,7 @@ export class HomePage {
 
   constructor(
   	public navCtrl: NavController,
+    public navParams: NavParams,
     public songProvider: SongProvider,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController
@@ -49,7 +50,7 @@ export class HomePage {
   goToProfile(): void {
     this.navCtrl.push("ProfilePage");
   }
-  
+
   goToSongDetail(songId): void {
     this.navCtrl.push('SongDetailPage', { songId: songId });
   }

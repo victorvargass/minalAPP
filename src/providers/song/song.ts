@@ -32,6 +32,8 @@ export class SongProvider {
           id: songSnapshot.key,
           title: songSnapshot.val().title,
           category: songSnapshot.val().category,
+          male_note: songSnapshot.val().male_note,          
+          female_note: songSnapshot.val().female_note,
           lyrics: songSnapshot.val().lyrics
         });
         //this.sortSongsByABC(this.songList); //need to optimize this
@@ -41,14 +43,18 @@ export class SongProvider {
   }
 
   createSong(
-    lyrics: object,
     title: string,
-    category: object
+    category: object,
+    male_note: string,
+    female_note: string,
+    lyrics: object
   ): firebase.database.ThenableReference {
     return this.songListRef.push({
       userUid: this.currentUser.uid,
       title: title,
       category: category,
+      male_note: male_note,
+      female_note: female_note,
       lyrics: lyrics
     });
   }

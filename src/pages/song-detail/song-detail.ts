@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { SongProvider } from "../../providers/song/song";
-import { ProfileProvider } from "../../providers/profile/profile";
 import { AlertController } from 'ionic-angular';
 
 /**
