@@ -1,0 +1,47 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding center text-center>
+      <h2>Ingresa tus datos</h2>
+      <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+        <ion-item>
+          <ion-label floating>Tu nombre</ion-label>
+          <ion-input type="text" formControlName="firstName"
+            [class.invalid]="blur"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Tu apellido</ion-label>
+          <ion-input type="text" formControlName="lastName"
+            [class.invalid]="blur"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Tu direccion de email</ion-label>
+          <ion-input formControlName="email" type="email" 
+            [class.invalid]="!signupForm.controls.email.valid && blur"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label floating>Tu contraseña</ion-label>
+          <ion-input formControlName="password" type="password" 
+            [class.invalid]="!signupForm.controls.password.valid && blur"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Cargo</ion-label>
+          <ion-select >
+            <ion-option value = "musician"> Músico  </ion-option>
+            <ion-option value = "vocals"> Vocalista </ion-option>
+          </ion-select>
+        </ion-item>
+        <br>
+
+        <button ion-button block type="submit" [disabled]="!signupForm.valid">
+          Crear una cuenta
+        </button>
+
+      </form>
+
+      <br><br><br><br><br><br><br><br>
+</ion-content>

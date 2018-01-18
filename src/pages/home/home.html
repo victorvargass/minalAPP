@@ -1,18 +1,42 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      Repertorio alabanzas
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToProfile()">
+        <ion-icon name="list"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="goToProfile()">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-item>
+    <ion-searchbar
+      [(ngModel)]="searchTerm"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onSearchInput()"
+      placeholder="Buscar por nombre">
+    </ion-searchbar>
+  </ion-item>
+  <div>
+      <ion-card *ngFor="let song of songList">
+        <ion-item (click)="goToSongDetail(song.id)" (press)="deleteSong(song.id)">
+          <h2>{{song.title}}</h2>
+        </ion-item>
+      </ion-card>
+  </div>
+  <ion-fab>
+    <button ion-fab position="bottom"
+      (click)="goToCreateSong()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

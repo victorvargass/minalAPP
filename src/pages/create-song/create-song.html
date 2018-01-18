@@ -1,0 +1,50 @@
+<!--
+  Generated template for the CreateSongPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Agregar canción al repertorio</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding center text-center>
+      <form [formGroup]="createSongForm" (submit)="createSong()" novalidate>
+        <ion-item>
+          <ion-label floating>Título</ion-label>
+          <ion-input type="text" formControlName="title"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tipo</ion-label>
+          <ion-select formControlName="type" multiple="true">
+            <ion-option value = "Cristo"> Cristo  </ion-option>
+            <ion-option value = "Espíritu Santo"> Espiritu Santo </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Categoría</ion-label>
+          <ion-select formControlName="category">
+            <ion-option value = "Exaltación"> Exaltación  </ion-option>
+            <ion-option value = "Adoración"> Adoración </ion-option>
+          </ion-select>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label floating>Letra</ion-label>
+          <ion-textarea formControlName="lyrics" type="text"></ion-textarea>
+        </ion-item>
+        <br>
+
+        <button ion-button type="submit">
+          Agregar canción
+        </button>
+
+      </form>
+
+      <br><br><br><br><br><br><br><br>
+</ion-content>

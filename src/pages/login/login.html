@@ -1,0 +1,46 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Ingresar con una cuenta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding center text-center>
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+
+    <ion-item>
+      <ion-label floating>Tu direccion de email</ion-label>
+      <ion-input formControlName="email" type="email"
+        [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label floating>Tu contraseña</ion-label>
+      <ion-input formControlName="password" type="password"
+        [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="!loginForm.valid">
+      Entrar
+    </button>
+
+  </form>
+  <ion-item>
+    <button ion-button block clear
+      (click)="goToSignup()">
+      Crear cuenta
+    </button>
+    <button ion-button block clear (click)="goToResetPassword()">
+      Olvide mi contraseña
+    </button>
+  </ion-item>
+  
+</ion-content>

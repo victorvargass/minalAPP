@@ -1,0 +1,58 @@
+page-welcome {
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .slide-image {
+    max-height: 50%;
+    max-width: 60%;
+    margin: 18px 0;
+  }
+
+  form {
+    margin-bottom: 32px;
+    button {
+      margin-top: 20px;
+    }
+  }
+
+  b {
+    font-weight: 500;
+  }
+
+  p {
+    padding: 0 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #60646B;
+
+    b {
+      color: #000000;
+    }
+  }
+
+  ion-label {
+    margin-left: 5px;
+  }
+
+  ion-input {
+    padding: 5px;
+  }
+
+  .invalid {
+    border-bottom: 1px solid #ff6153;
+  }
+
+  .error-message {
+    min-height: 2.2rem;
+    p {
+      font-size: 60%
+    }
+    ion-label {
+      margin: 2px 0;
+    }
+    .item-inner {
+      border-bottom: 0 !important;
+    }
+  }
+}
