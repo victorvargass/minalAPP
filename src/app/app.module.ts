@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule, Injectable } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -12,6 +12,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
 import { SongProvider } from '../providers/song/song';
+import { Autosize } from '../directives/autosize/autosize';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +21,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
-    WelcomePage
+    WelcomePage,
+    Autosize
   ],
   imports: [
     BrowserModule,

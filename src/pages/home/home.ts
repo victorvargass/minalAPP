@@ -13,6 +13,7 @@ export class HomePage {
   searchTerm: string = '';
   public searchControl: FormControl;
   searching: any = false; 
+  private isOn: boolean = false;
 
   constructor(
   	public navCtrl: NavController,
@@ -30,7 +31,7 @@ export class HomePage {
         this.songList.push({                        
           id: songSnapshot.key,
           title: songSnapshot.val().title,
-          type: songSnapshot.val().type,
+          category: songSnapshot.val().category,
           lyrics: songSnapshot.val().lyrics
         });
         return false;
@@ -48,7 +49,7 @@ export class HomePage {
   goToProfile(): void {
     this.navCtrl.push("ProfilePage");
   }
-
+  
   goToSongDetail(songId): void {
     this.navCtrl.push('SongDetailPage', { songId: songId });
   }
@@ -73,7 +74,7 @@ export class HomePage {
             handler: () => {
               this.songProvider.deleteSong(songId)
               let toast = this.toastCtrl.create({
-                message: 'Publicación eliminada con éxito',
+                message: 'Canción eliminada con éxito',
                 duration: 3000
               });
               toast.present();
@@ -94,4 +95,17 @@ export class HomePage {
     this.searching = true;
     this.setFilteredItems()
   }
+
+
+  getButtonText(): string {
+    return `Switch ${ this.isOn ? 'Off' : 'On' }`;
+  }
+  setState(): void {
+    this.isOn = !this.isOn;
+  }
+
+  toggleDetails() {
+    this.isOn = !this.isOn;
+  }
+
 }

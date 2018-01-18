@@ -38,6 +38,7 @@ export class SongDetailPage {
       .on("value", songSnapshot => {
         this.currentSong = songSnapshot.val();
         this.currentSong.id = songSnapshot.key;
+        this.currentSong.lyrics = this.addBr(this.currentSong.lyrics)
       });
   }
 
@@ -61,8 +62,8 @@ export class SongDetailPage {
                 message: 'Publicación eliminada con éxito',
                 duration: 3000
               });
-              console.log("Post eliminado desde detail: volver a Home")
               toast.present();
+              this.backToHomePage()
             }
           }
         ]
@@ -70,9 +71,13 @@ export class SongDetailPage {
       confirm.present();
   }
 
+  addBr(str: string): String {
+    let text = str.replace(/\n/g, "<br />")
+    console.log(text);
+    return text;
+  }
 
-
-  backToHomePage(songId): void {
+  backToHomePage(): void {
     this.navCtrl.push('HomePage');
   }
 

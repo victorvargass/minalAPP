@@ -31,7 +31,7 @@ export class SongProvider {
         this.songList.push({                        
           id: songSnapshot.key,
           title: songSnapshot.val().title,
-          type: songSnapshot.val().type,
+          category: songSnapshot.val().category,
           lyrics: songSnapshot.val().lyrics
         });
         //this.sortSongsByABC(this.songList); //need to optimize this
@@ -41,15 +41,13 @@ export class SongProvider {
   }
 
   createSong(
-    lyrics: string,
+    lyrics: object,
     title: string,
-    type: object,
     category: object
   ): firebase.database.ThenableReference {
     return this.songListRef.push({
       userUid: this.currentUser.uid,
       title: title,
-      type: type,
       category: category,
       lyrics: lyrics
     });

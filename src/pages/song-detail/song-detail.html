@@ -18,12 +18,11 @@
   <ion-card >
     <ion-item center text-center>
       <h2>{{currentSong?.title}}</h2> 
-      <p>{{currentSong?.type}}</p>
       <p>{{currentSong?.category}}</p>
     </ion-item>
 
     <ion-card-content >
-      <p>{{currentSong?.lyrics}}</p>
+      <p [innerHTML]="currentSong?.lyrics"></p>
     </ion-card-content>
   </ion-card>
   <br>

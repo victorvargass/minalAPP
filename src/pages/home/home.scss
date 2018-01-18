@@ -1,3 +1,25 @@
 page-home {
 
 }
+
+ion-row {
+	vertical-align: middle;
+}
+
+.background{
+	background-color: #D32F2F;
+	height: 200px;
+}
+
+.searchbar-md .searchbar-input {
+	background-color: #D32F2F;
+	box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+	color: #ffffff;
+	input-clear-icon-size: 0px;
+	input-search-icon-color: #ffffff;
+	placeholder-color: #ffffff; 
+}
+
+.searchbar-search-icon {
+	color:#ffffff;
+}

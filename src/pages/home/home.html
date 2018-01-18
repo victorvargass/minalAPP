@@ -1,31 +1,72 @@
+<ion-menu [content]="mycontent" >
+  <ion-header height=30px>
+      <div class="background">
+        <div>
+
+        </div>
+      </div>
+  </ion-header>
+ 
+  <ion-content>
+    <ion-list>
+      <button ion-item menuClose>
+        <ion-row >
+          <ion-col col-2>
+            <ion-icon name="list-box"></ion-icon>
+          </ion-col>
+          <ion-col col-3>
+            <a>Repertorio</a>
+          </ion-col>
+        </ion-row>
+      </button>
+
+      <button ion-item (click)="goToProfile()">
+        <ion-row >
+          <ion-col col-2>
+            <ion-icon name="person"></ion-icon>
+          </ion-col>
+          <ion-col col-3>
+            <a>Perfil</a>
+          </ion-col>
+        </ion-row>
+      </button>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #mycontent swipeBackEnabled="false"></ion-nav>
+
 <ion-header>
   <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Repertorio alabanzas
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="goToProfile()">
-        <ion-icon name="list"></ion-icon>
+    <ion-buttons left >
+      <button ion-button *ngIf="!isOn" menuToggle>
+        <ion-icon name="menu"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="goToProfile()">
-        <ion-icon name="settings"></ion-icon>
+      <button ion-button (click)=setState() *ngIf="isOn">
+        <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons right>
+      <button *ngIf="!isOn" ion-button icon-only (click)="toggleDetails()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title *ngIf="isOn">
+      <ion-searchbar 
+        [(ngModel)]="searchTerm"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="onSearchInput()"
+        placeholder="Buscar por nombre">
+      </ion-searchbar>
+    </ion-title>
+    <ion-title *ngIf="!isOn">
+      Repertorio Alabanzas
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-searchbar
-      [(ngModel)]="searchTerm"
-      [showCancelButton]="shouldShowCancel"
-      (ionInput)="onSearchInput()"
-      placeholder="Buscar por nombre">
-    </ion-searchbar>
-  </ion-item>
   <div>
       <ion-card *ngFor="let song of songList">
         <ion-item (click)="goToSongDetail(song.id)" (press)="deleteSong(song.id)">
@@ -33,10 +74,13 @@
         </ion-item>
       </ion-card>
   </div>
-  <ion-fab>
-    <button ion-fab position="bottom"
-      (click)="goToCreateSong()">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
+  <div>
+    <ion-fab bottom right>
+      <button ion-fab 
+        (click)="goToCreateSong()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
 </ion-content>
+

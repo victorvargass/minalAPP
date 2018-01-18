@@ -19,24 +19,19 @@
           <ion-label floating>Título</ion-label>
           <ion-input type="text" formControlName="title"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Tipo</ion-label>
-          <ion-select formControlName="type" multiple="true">
-            <ion-option value = "Cristo"> Cristo  </ion-option>
-            <ion-option value = "Espíritu Santo"> Espiritu Santo </ion-option>
-          </ion-select>
-        </ion-item>
+        <br>
         <ion-item>
           <ion-label>Categoría</ion-label>
           <ion-select formControlName="category">
             <ion-option value = "Exaltación"> Exaltación  </ion-option>
             <ion-option value = "Adoración"> Adoración </ion-option>
+            <ion-option value = "Popurrí"> Popurrí </ion-option>
           </ion-select>
         </ion-item>
         
         <ion-item>
           <ion-label floating>Letra</ion-label>
-          <ion-textarea formControlName="lyrics" type="text"></ion-textarea>
+          <ion-textarea rows="20" cols="5" autosize formControlName="lyrics" ></ion-textarea>
         </ion-item>
         <br>
 
@@ -45,6 +40,4 @@
         </button>
 
       </form>
-
-      <br><br><br><br><br><br><br><br>
 </ion-content>
