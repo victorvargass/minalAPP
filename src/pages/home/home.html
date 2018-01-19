@@ -1,8 +1,9 @@
 <ion-menu [content]="mycontent" >
   <ion-header height=30px>
-      <div class="background">
-        <div>
-
+      <div class="background" >
+        <div class = "bottomLeft">
+          <p><b>{{userProfile?.firstName}} {{userProfile?.lastName}}</b></p>
+          <p>{{userProfile?.email}}</p>
         </div>
       </div>
   </ion-header>

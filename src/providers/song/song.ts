@@ -14,6 +14,9 @@ export class SongProvider {
   public userProfile: firebase.database.Reference;
   public currentUser: firebase.User;
   public songList: Array<any>;
+  public notes: any;
+  public categories: any;
+
   constructor() {
     this.songListRef = firebase
       .database()
@@ -25,6 +28,55 @@ export class SongProvider {
 
       }
     });
+    this.categories = [{
+          value: "E",
+          text: " Exaltación "
+        },{
+          value: "A",
+          text: " Adoración "
+        },{
+          value: "P",
+          text: " Popurrí "
+        }]
+
+    this.notes = [{
+          value: "C",
+          text: " C / Do "
+        },{
+          value: "C#",
+          text: " C# / Do sostenido "
+        },{
+          value: "D",
+          text: " D / Re "
+        },{
+          value: "D#",
+          text: " D# / Re sostenido "
+        },{
+          value: "E",
+          text: " E / Mi "
+        },{
+          value: "F",
+          text: " F / Fa "
+        },{
+          value: "F#",
+          text: " F# / Fa sostenido "
+        },{
+          value: "G",
+          text: " G / Sol "
+        },{
+          value: "G#",
+          text: " G# / Sol sostenido "
+        },{
+          value: "A",
+          text: " A / La "
+        },{
+          value: "A#",
+          text: " A# / La sostenido "
+        },{
+          value: "B",
+          text: " B / Si  "
+        }]
+        
     this.getSongList().on("value", songListSnapshot => {
       this.songList = [];
       songListSnapshot.forEach( songSnapshot => {
@@ -32,6 +84,8 @@ export class SongProvider {
           id: songSnapshot.key,
           title: songSnapshot.val().title,
           category: songSnapshot.val().category,
+          male_note: songSnapshot.val().male_note,          
+          female_note: songSnapshot.val().female_note,
           lyrics: songSnapshot.val().lyrics
         });
         //this.sortSongsByABC(this.songList); //need to optimize this
@@ -41,25 +95,37 @@ export class SongProvider {
   }
 
   createSong(
-    lyrics: object,
     title: string,
-    category: object
+    category: object,
+    male_note: string,
+    female_note: string,
+    lyrics: object
   ): firebase.database.ThenableReference {
     return this.songListRef.push({
       userUid: this.currentUser.uid,
       title: title,
       category: category,
+      male_note: male_note,
+      female_note: female_note,
       lyrics: lyrics
     });
+  }
+
+  editSong(
+    id: string,
+    title: string,
+    category: object,
+    male_note: string,
+    female_note: string,
+    lyrics: object
+  ) : Promise<any> {
+    let songListRef = firebase.database().ref(`/songs/${id}`)
+    return songListRef.update({ title, category, male_note, female_note, lyrics })
   }
 
   deleteSong(songId: string): PromiseLike<any>  {
     return this.songListRef.child(songId).remove();
 
-  }
-
-  updateLyrics(lyrics: string): Promise<any> {
-    return this.userProfile.update({ lyrics });
   }
 
   getSongList(): firebase.database.Reference {

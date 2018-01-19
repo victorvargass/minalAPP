@@ -18,6 +18,9 @@ import { HomePage } from "../../pages/home/home";
 })
 export class CreateSongPage {
   public createSongForm: FormGroup;
+  public currentSong: any = {};
+  public notes: any;
+  public categories: any;
 
   constructor(
 	  public navCtrl: NavController,
@@ -26,16 +29,21 @@ export class CreateSongPage {
 	  public songProvider: SongProvider,
     public toastCtrl: ToastController
   ) {
-
-
     this.createSongForm = formBuilder.group({
       title: ['',
       Validators.compose([Validators.required])],
       category: ['',
       Validators.compose([Validators.required])],
+      male_note: ['',
+      Validators.compose([Validators.required])],
+      female_note: ['',
+      Validators.compose([Validators.required])],
       lyrics: ['',
       Validators.compose([Validators.minLength(6), Validators.required])]
     });
+    this.notes = this.songProvider.notes;
+    this.categories = this.songProvider.categories;
+
   }
 
 	ionViewDidLoad() {
@@ -43,8 +51,11 @@ export class CreateSongPage {
 	}
 
 	createSong(){
-    this.songProvider.createSong(this.createSongForm.value.lyrics,
-    this.createSongForm.value.title, this.createSongForm.value.category)
+    this.songProvider.createSong(this.createSongForm.value.title, 
+      this.createSongForm.value.category,
+      this.createSongForm.value.male_note,
+      this.createSongForm.value.female_note,
+      this.createSongForm.value.lyrics)
     let toast = this.toastCtrl.create({
       message: 'Canción agregada al repertorio con éxito',
       duration: 3000
@@ -52,4 +63,5 @@ export class CreateSongPage {
     toast.present();
     this.navCtrl.setRoot(HomePage);
 	}
+  
 }

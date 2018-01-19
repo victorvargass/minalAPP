@@ -43,7 +43,9 @@ export class SignupPage {
       email: ['',
       Validators.compose([Validators.required, EmailValidator.isValid])],
       password: ['',
-      Validators.compose([Validators.minLength(6), Validators.required])]
+      Validators.compose([Validators.minLength(6), Validators.required])],
+      position: ['',
+      Validators.compose([Validators.required])]
     });
   }
 
@@ -51,9 +53,8 @@ export class SignupPage {
     if (!this.signupForm.valid){
     } else {
       
-      console.log(this.signupForm.value);
       this.authProvider.signupUser(this.signupForm.value.email, 
-        this.signupForm.value.password, this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.type)
+        this.signupForm.value.password, this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.position)
       .then(() => {
         this.loading.dismiss().then( () => {
           this.navCtrl.setRoot(HomePage);

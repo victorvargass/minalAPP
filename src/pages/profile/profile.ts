@@ -7,6 +7,7 @@ import {
 } from 'ionic-angular';
 import { ProfileProvider } from "../../providers/profile/profile";
 import { AuthProvider } from "../../providers/auth/auth";
+import { WelcomePage } from '../../pages/welcome/welcome';
 
 /**
  * Generated class for the ProfilePage page.
@@ -22,7 +23,6 @@ import { AuthProvider } from "../../providers/auth/auth";
 })
 export class ProfilePage {
   public userProfile: any;
-  public birthDate: string;
 
   constructor(
     public navCtrl: NavController,
@@ -35,13 +35,12 @@ export class ProfilePage {
   ionViewDidLoad() {
     this.profileProvider.getUserProfile().on("value", userProfileSnapshot => {
       this.userProfile = userProfileSnapshot.val();
-      this.birthDate = userProfileSnapshot.val().birthDate;
     });
   }
 
   logOut(): void {
     this.authProvider.logoutUser().then(() => {
-      this.navCtrl.setRoot("LoginPage");
+      this.navCtrl.setRoot(WelcomePage);
     });
   }
 
@@ -71,10 +70,6 @@ export class ProfilePage {
       ]
     });
     alert.present();
-  }
-
-  updateDOB(birthDate:string): void {
-    this.profileProvider.updateDOB(birthDate);
   }
 
   updateEmail():void {

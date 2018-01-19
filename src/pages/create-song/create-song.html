@@ -23,15 +23,30 @@
         <ion-item>
           <ion-label>Categoría</ion-label>
           <ion-select formControlName="category">
-            <ion-option value = "Exaltación"> Exaltación  </ion-option>
-            <ion-option value = "Adoración"> Adoración </ion-option>
-            <ion-option value = "Popurrí"> Popurrí </ion-option>
+            <ion-option 
+              *ngFor="let category of categories" value="{{category.text}}">{{category.text}}
+            </ion-option>
           </ion-select>
         </ion-item>
-        
+        <ion-item>
+          <ion-label>Nota para hombres</ion-label>
+          <ion-select formControlName="male_note">
+            <ion-option 
+              *ngFor="let note of notes" value="{{note.text}}">{{note.text}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nota para mujeres</ion-label>
+          <ion-select formControlName="female_note">
+            <ion-option 
+              *ngFor="let note of notes" value="{{note.text}}">{{note.text}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
         <ion-item>
           <ion-label floating>Letra</ion-label>
-          <ion-textarea rows="20" cols="5" autosize formControlName="lyrics" ></ion-textarea>
+          <ion-textarea rows="100" cols="5" autosize formControlName="lyrics" ></ion-textarea>
         </ion-item>
         <br>
 

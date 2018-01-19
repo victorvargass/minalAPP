@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { SongProvider } from "../../providers/song/song";
-import { ProfileProvider } from "../../providers/profile/profile";
 import { AlertController } from 'ionic-angular';
 
 /**
@@ -43,7 +42,6 @@ export class SongDetailPage {
   }
 
   deleteSong(songId): void {
-    console.log(songId)
       let confirm = this.alertCtrl.create({
         title: 'Eliminar',
         message: '¿Desea eliminar su publicación?',
@@ -73,12 +71,15 @@ export class SongDetailPage {
 
   addBr(str: string): String {
     let text = str.replace(/\n/g, "<br />")
-    console.log(text);
     return text;
   }
 
   backToHomePage(): void {
     this.navCtrl.push('HomePage');
+  }
+
+  goToEditSong(songId): void {
+    this.navCtrl.push('EditSongPage', { songId: songId });
   }
 
 }
