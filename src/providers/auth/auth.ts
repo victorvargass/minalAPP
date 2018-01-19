@@ -10,7 +10,7 @@ export class AuthProvider {
   }
 
   signupUser(email: string, password: string, 
-    firstName: string, lastName: string, type: string): Promise<any> {
+    firstName: string, lastName: string, position: string): Promise<any> {
     return firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -24,7 +24,7 @@ export class AuthProvider {
           email: email,
           firstName: firstName,
           lastName: lastName,
-          type: type
+          position: position
         });
     })
   }

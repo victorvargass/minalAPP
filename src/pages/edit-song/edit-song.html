@@ -1,5 +1,5 @@
 <!--
-  Generated template for the EditSongPage page.
+  Generated template for the CreateSongPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,12 +7,52 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>EditSong</ion-title>
+    <ion-title>Editar canción </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding center text-center>
+      <form [formGroup]="editSongForm" (submit)="editSong(currentSong.id)" novalidate>
+        <ion-item>
+          <ion-label floating>Título</ion-label>
+          <ion-input type="text" formControlName="title" value="{{currentSong?.title}}"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label>Categoría</ion-label>
+          <ion-select formControlName="category" [(ngModel)]="currentSong.category">
+	        <ion-option 
+	          *ngFor="let category of categories" value="{{category.text}}">{{category.text}}
+	        </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nota para hombres</ion-label>
+	      <ion-select formControlName="male_note" [(ngModel)]="currentSong.male_note">
+	        <ion-option 
+	          *ngFor="let note of notes" value="{{note.text}}">{{note.text}}
+	        </ion-option>
+	      </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nota para mujeres</ion-label>
+          	<ion-select formControlName="female_note" [(ngModel)]="currentSong.female_note">
+		        <ion-option 
+		          *ngFor="let note of notes" value="{{note.text}}">{{note.text}}
+		        </ion-option>
+	    	</ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Letra</ion-label>
+          <ion-textarea rows="100" cols="5" autosize formControlName="lyrics" value="{{currentSong?.lyrics}}"></ion-textarea>
+        </ion-item>
+        <br>
 
+        <button ion-button type="submit">
+          Guardar
+        </button>
+
+      </form>
 </ion-content>

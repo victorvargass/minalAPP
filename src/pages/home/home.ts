@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { SongProvider } from "../../providers/song/song";
+import { ProfileProvider } from "../../providers/profile/profile";
 import { AlertController } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 
@@ -14,18 +15,24 @@ export class HomePage {
   public searchControl: FormControl;
   searching: any = false; 
   private isOn: boolean = false;
+  public userProfile: any;
 
   constructor(
   	public navCtrl: NavController,
     public navParams: NavParams,
     public songProvider: SongProvider,
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public profileProvider: ProfileProvider
     ) {
 
   }
 
   ionViewDidLoad(){
+    this.profileProvider.getUserProfile().on("value", userProfileSnapshot => {
+      this.userProfile = userProfileSnapshot.val();
+    });
+    
     this.songProvider.getSongList().on("value", songListSnapshot => {
       this.songList = [];
       songListSnapshot.forEach( songSnapshot => {
@@ -39,7 +46,6 @@ export class HomePage {
         //this.sortSongsByABC(this.songList); //need to optimize this
       })
     })
-    console.log(this.songList)
   }
 
   setFilteredItems() {
@@ -54,6 +60,7 @@ export class HomePage {
   goToSongDetail(songId): void {
     this.navCtrl.push('SongDetailPage', { songId: songId });
   }
+  
   goToCreateSong(): void {
     this.navCtrl.push('CreateSongPage');
   }

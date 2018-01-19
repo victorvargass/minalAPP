@@ -23,7 +23,6 @@ import { WelcomePage } from '../../pages/welcome/welcome';
 })
 export class ProfilePage {
   public userProfile: any;
-  public birthDate: string;
 
   constructor(
     public navCtrl: NavController,
@@ -36,7 +35,6 @@ export class ProfilePage {
   ionViewDidLoad() {
     this.profileProvider.getUserProfile().on("value", userProfileSnapshot => {
       this.userProfile = userProfileSnapshot.val();
-      this.birthDate = userProfileSnapshot.val().birthDate;
     });
   }
 
@@ -72,10 +70,6 @@ export class ProfilePage {
       ]
     });
     alert.present();
-  }
-
-  updateDOB(birthDate:string): void {
-    this.profileProvider.updateDOB(birthDate);
   }
 
   updateEmail():void {

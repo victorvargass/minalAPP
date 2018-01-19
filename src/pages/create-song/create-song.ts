@@ -18,6 +18,9 @@ import { HomePage } from "../../pages/home/home";
 })
 export class CreateSongPage {
   public createSongForm: FormGroup;
+  public currentSong: any = {};
+  public notes: any;
+  public categories: any;
 
   constructor(
 	  public navCtrl: NavController,
@@ -26,8 +29,6 @@ export class CreateSongPage {
 	  public songProvider: SongProvider,
     public toastCtrl: ToastController
   ) {
-
-
     this.createSongForm = formBuilder.group({
       title: ['',
       Validators.compose([Validators.required])],
@@ -40,6 +41,9 @@ export class CreateSongPage {
       lyrics: ['',
       Validators.compose([Validators.minLength(6), Validators.required])]
     });
+    this.notes = this.songProvider.notes;
+    this.categories = this.songProvider.categories;
+
   }
 
 	ionViewDidLoad() {
@@ -59,4 +63,5 @@ export class CreateSongPage {
     toast.present();
     this.navCtrl.setRoot(HomePage);
 	}
+  
 }

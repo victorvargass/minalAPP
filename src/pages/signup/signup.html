@@ -28,10 +28,14 @@
           <ion-input formControlName="password" type="password" 
             [class.invalid]="!signupForm.controls.password.valid && blur"></ion-input>
         </ion-item>
-        <ion-item>
+        <br>
+        <ion-item padding>
           <ion-label>Cargo</ion-label>
-          <ion-select >
-            <ion-option value = "musician"> Músico  </ion-option>
+          <ion-select formControlName="position" >
+            <ion-option value = "drums"> Baterista</ion-option>
+            <ion-option value = "guitar"> Guitarrista  </ion-option>
+            <ion-option value = "keyboardist"> Tecladista  </ion-option>
+            <ion-option value = "violinist"> Violinista  </ion-option>
             <ion-option value = "vocals"> Vocalista </ion-option>
           </ion-select>
         </ion-item>

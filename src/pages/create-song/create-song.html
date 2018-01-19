@@ -23,43 +23,25 @@
         <ion-item>
           <ion-label>Categoría</ion-label>
           <ion-select formControlName="category">
-            <ion-option value = "Exaltación"> Exaltación  </ion-option>
-            <ion-option value = "Adoración"> Adoración </ion-option>
-            <ion-option value = "Popurrí"> Popurrí </ion-option>
+            <ion-option 
+              *ngFor="let category of categories" value="{{category.text}}">{{category.text}}
+            </ion-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label>Nota para hombres</ion-label>
           <ion-select formControlName="male_note">
-            <ion-option value = "C"> C / Do </ion-option>
-            <ion-option value = "C#"> C# / Do sostenido </ion-option>
-            <ion-option value = "D"> D / Re </ion-option>
-            <ion-option value = "D#"> D# / Re sostenido  </ion-option>
-            <ion-option value = "E"> E / Mi </ion-option>
-            <ion-option value = "F"> F / Fa </ion-option>
-            <ion-option value = "F#"> F# / Fa sostenido  </ion-option>
-            <ion-option value = "G"> G / Sol </ion-option>
-            <ion-option value = "G#"> G# / Sol sostenido </ion-option>
-            <ion-option value = "A"> A / La  </ion-option>
-            <ion-option value = "A#"> A# / La sostenido </ion-option>
-            <ion-option value = "B"> B / Si sostenido </ion-option>
+            <ion-option 
+              *ngFor="let note of notes" value="{{note.text}}">{{note.text}}
+            </ion-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label>Nota para mujeres</ion-label>
           <ion-select formControlName="female_note">
-            <ion-option value = "C"> C / Do </ion-option>
-            <ion-option value = "C#"> C# / Do sostenido </ion-option>
-            <ion-option value = "D"> D / Re </ion-option>
-            <ion-option value = "D#"> D# / Re sostenido  </ion-option>
-            <ion-option value = "E"> E / Mi </ion-option>
-            <ion-option value = "F"> F / Fa </ion-option>
-            <ion-option value = "F#"> F# / Fa sostenido  </ion-option>
-            <ion-option value = "G"> G / Sol </ion-option>
-            <ion-option value = "G#"> G# / Sol sostenido </ion-option>
-            <ion-option value = "A"> A / La  </ion-option>
-            <ion-option value = "A#"> A# / La sostenido </ion-option>
-            <ion-option value = "B"> B / Si sostenido </ion-option>
+            <ion-option 
+              *ngFor="let note of notes" value="{{note.text}}">{{note.text}}
+            </ion-option>
           </ion-select>
         </ion-item>
         <ion-item>

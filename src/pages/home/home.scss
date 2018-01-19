@@ -2,13 +2,24 @@ page-home {
 
 }
 
+p {
+	color: #ffffff;
+}
+.bottomLeft {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size: 15px;
+}
+
 ion-row {
 	vertical-align: middle;
 }
 
 .background{
-	background-color: #D32F2F;
 	height: 200px;
+	background: no-repeat center/100% url("../assets/imgs/guitarrist.jpg");
+	background-size: cover;
 }
 
 .searchbar-md .searchbar-input {
