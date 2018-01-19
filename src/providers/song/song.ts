@@ -30,13 +30,13 @@ export class SongProvider {
     });
     this.categories = [{
           value: "E",
-          text: " Exaltación "
+          text: "Exaltación"
         },{
           value: "A",
-          text: " Adoración "
+          text: "Adoración"
         },{
           value: "P",
-          text: " Popurrí "
+          text: "Popurrí"
         }]
 
     this.notes = [{
@@ -44,37 +44,37 @@ export class SongProvider {
           text: " C / Do "
         },{
           value: "C#",
-          text: " C# / Do sostenido "
+          text: "C# / Do sostenido"
         },{
           value: "D",
           text: " D / Re "
         },{
           value: "D#",
-          text: " D# / Re sostenido "
+          text: "D# / Re sostenido"
         },{
           value: "E",
-          text: " E / Mi "
+          text: "E / Mi"
         },{
           value: "F",
-          text: " F / Fa "
+          text: "F / Fa"
         },{
           value: "F#",
-          text: " F# / Fa sostenido "
+          text: "F# / Fa sostenido"
         },{
           value: "G",
-          text: " G / Sol "
+          text: "G / Sol"
         },{
           value: "G#",
-          text: " G# / Sol sostenido "
+          text: "G# / Sol sostenido"
         },{
           value: "A",
-          text: " A / La "
+          text: "A / La"
         },{
           value: "A#",
-          text: " A# / La sostenido "
+          text: "A# / La sostenido"
         },{
           value: "B",
-          text: " B / Si  "
+          text: "B / Si"
         }]
         
     this.getSongList().on("value", songListSnapshot => {
@@ -136,10 +136,13 @@ export class SongProvider {
     return this.songListRef.child(songId);
   }
 
-  filterItems(searchTerm){
-      return this.songList.filter((item) => {
-          return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-      });    
+  filterItems(searchTerm, category){
+      return (this.songList.filter((item) => {
+          return (
+              (item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) && 
+              (item.category.toLowerCase().indexOf(category.toLowerCase()) > -1)
+            );
+      }));    
   }
 
 }
