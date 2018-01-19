@@ -69,11 +69,14 @@
 
 <ion-content padding>
   <div>
-      <ion-card *ngFor="let song of songList">
-        <ion-item (click)="goToSongDetail(song.id)" (press)="deleteSong(song.id)">
+    <ion-list>
+      <ion-item *ngFor="let song of songList"
+        (click)="goToSongDetail(song.id)"
+        (press)="deleteSong(song.id)">
+        <ion-icon name="musical-note" item-start></ion-icon>
           <h2>{{song.title}}</h2>
-        </ion-item>
-      </ion-card>
+      </ion-item>
+    </ion-list>
   </div>
   <div>
     <ion-fab bottom right>
