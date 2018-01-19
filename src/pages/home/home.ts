@@ -16,7 +16,13 @@ export class HomePage {
   searching: any = false; 
   private isOn: boolean = false;
   public userProfile: any;
-
+  public exaltacionList: Array<any>;
+  public adoracionList: Array<any>;
+  public popurriList: Array<any>;
+  public exaltacionListCount: number;
+  public adoracionListCount: number;
+  public popurriListCount: number;
+  public songsSegment;
   constructor(
   	public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,28 +35,70 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
+    this.songsSegment = 'Exaltación';
     this.profileProvider.getUserProfile().on("value", userProfileSnapshot => {
       this.userProfile = userProfileSnapshot.val();
     });
     
     this.songProvider.getSongList().on("value", songListSnapshot => {
-      this.songList = [];
+      this.exaltacionList = [];
+      this.adoracionList = [];
+      this.popurriList = [];
       songListSnapshot.forEach( songSnapshot => {
-        this.songList.push({                        
-          id: songSnapshot.key,
-          title: songSnapshot.val().title,
-          category: songSnapshot.val().category,
-          lyrics: songSnapshot.val().lyrics
-        });
+        if (songSnapshot.val().category == "Exaltación") {
+          this.exaltacionList.push({                        
+            id: songSnapshot.key,
+            title: songSnapshot.val().title,
+            category: songSnapshot.val().category,
+            lyrics: songSnapshot.val().lyrics
+          });
+        }
+        else if (songSnapshot.val().category == "Adoración") {
+          this.adoracionList.push({                        
+            id: songSnapshot.key,
+            title: songSnapshot.val().title,
+            category: songSnapshot.val().category,
+            lyrics: songSnapshot.val().lyrics
+          });
+        }
+        else {
+          this.popurriList.push({                        
+            id: songSnapshot.key,
+            title: songSnapshot.val().title,
+            category: songSnapshot.val().category,
+            lyrics: songSnapshot.val().lyrics
+          });
+        }
+        this.exaltacionListCount = this.exaltacionList.length;
+        this.adoracionListCount = this.adoracionList.length;
+        this.popurriListCount = this.popurriList.length;
+
+        this.sortSongsByABC(this.exaltacionList); //need to optimize this
+        this.sortSongsByABC(this.adoracionList); //need to optimize this
+        this.sortSongsByABC(this.popurriList); //need to optimize this
         return false;
-        //this.sortSongsByABC(this.songList); //need to optimize this
       })
     })
   }
 
-  setFilteredItems() {
-    this.songList = this.songProvider.filterItems(this.searchTerm)
-    console.log(this.songList)
+  setFilteredItems(segment) {
+    let filterList = this.songProvider.filterItems(this.searchTerm, segment)
+    switch(segment) {
+        case 'Exaltación':
+            this.exaltacionList = filterList;
+            this.sortSongsByABC(this.exaltacionList); //need to optimize this
+
+            break;
+        case 'Adoración':
+            this.adoracionList = filterList;
+            this.sortSongsByABC(this.adoracionList); //need to optimize this
+
+            break;
+        case 'Popurrí':
+            this.popurriList = filterList;
+            this.sortSongsByABC(this.popurriList); //need to optimize this
+
+    }
   }
 
   goToProfile(): void {
@@ -94,14 +142,21 @@ export class HomePage {
   }
 
   sortSongsByABC(array): void {
-    array.sort(function(a,b){
-      return +new Date(b.date) - +new Date(a.date);
+    array.sort(function (a, b) {
+      if (a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1;
+      }
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
     });
   }
 
   onSearchInput(){
     this.searching = true;
-    this.setFilteredItems()
+    this.setFilteredItems(this.songsSegment)
   }
 
 

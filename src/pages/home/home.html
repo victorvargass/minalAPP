@@ -69,8 +69,53 @@
 
 <ion-content padding>
   <div>
-    <ion-list>
-      <ion-item *ngFor="let song of songList"
+    <ion-segment [(ngModel)]="songsSegment">
+      <ion-segment-button value="Exaltación">
+        Exaltación
+      </ion-segment-button>
+      <ion-segment-button value="Adoración">
+        Adoración
+      </ion-segment-button>
+      <ion-segment-button value="Popurrí">
+        Popurrí
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="songsSegment">
+
+    <ion-list *ngSwitchCase="'Exaltación'">
+      <ion-item [hidden]="exaltacionListCount > 0">
+        <ion-note>
+          No hay canciones.</ion-note>
+      </ion-item>
+      <ion-item *ngFor="let song of exaltacionList"
+        (click)="goToSongDetail(song.id)"
+        (press)="deleteSong(song.id)">
+        <ion-icon name="musical-note" item-start></ion-icon>
+          <h2>{{song.title}}</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Adoración'">
+      <ion-item [hidden]="adoracionListCount > 0">
+        <ion-note>
+          No hay canciones.</ion-note>
+      </ion-item>
+      <ion-item *ngFor="let song of adoracionList"
+        (click)="goToSongDetail(song.id)"
+        (press)="deleteSong(song.id)">
+        <ion-icon name="musical-note" item-start></ion-icon>
+          <h2>{{song.title}}</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Popurrí'">
+      <ion-item [hidden]="popurriListCount > 0">
+        <ion-note>
+          No hay canciones.</ion-note>
+      </ion-item>
+      <ion-item *ngFor="let song of popurriList"
         (click)="goToSongDetail(song.id)"
         (press)="deleteSong(song.id)">
         <ion-icon name="musical-note" item-start></ion-icon>
