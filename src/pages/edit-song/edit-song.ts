@@ -39,7 +39,7 @@ export class EditSongPage {
       female_note: ['',
       Validators.compose([Validators.required])],
       lyrics: ['',
-      Validators.compose([Validators.minLength(6), Validators.required])]
+      Validators.compose([Validators.minLength(50), Validators.required])]
     });
 	this.songProvider
 		.getSongDetail(this.navParams.get("songId"))

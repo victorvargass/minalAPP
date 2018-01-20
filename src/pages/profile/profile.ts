@@ -64,6 +64,7 @@ export class ProfilePage {
         {
           text: "Guardar",
           handler: data => {
+
             this.profileProvider.updateName(data.firstName, data.lastName);
           }
         }
@@ -92,16 +93,16 @@ export class ProfilePage {
   updatePassword(): void {
     let alert: Alert = this.alertCtrl.create({
       inputs: [
-        { name: 'newPassword', placeholder: 'Nueva contraseña', type: 'password' },
-        { name: 'oldPassword', placeholder: 'Contraseña actual', type: 'password' }
+        { name: 'oldPassword', placeholder: 'Contraseña actual', type: 'password' },
+        { name: 'newPassword', placeholder: 'Nueva contraseña', type: 'password' }
       ],
       buttons: [
         { text: 'Cancelar' },
         { text: 'Guardar',
           handler: data => {
             this.profileProvider.updatePassword(
-              data.newPassword,
-              data.oldPassword
+              data.oldPassword,
+              data.newPassword
             );
           }
         }

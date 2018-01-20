@@ -28,7 +28,7 @@ export class LoginPage {
 
   public loginForm: FormGroup;
   public loading: Loading;
-
+  public errorMessage: string;
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -55,9 +55,16 @@ export class LoginPage {
           this.navCtrl.setRoot(HomePage);
         });
       }, error => {
+        console.log(error)
+        if(error.code == "auth/wrong-password"){
+          this.errorMessage = "La contraseña es inválida o el usuario no tiene una contraseña."
+        }
+        else if (error.code == "auth/user-not-found"){
+          this.errorMessage = "No existe un usuario registrado con este correo."
+        }
         this.loading.dismiss().then( () => {
           let alert = this.alertCtrl.create({
-            message: error.message,
+            message: this.errorMessage,
             buttons: [
               {
                 text: "Ok",
