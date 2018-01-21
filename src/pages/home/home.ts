@@ -39,7 +39,7 @@ export class HomePage {
     this.profileProvider.getUserProfile().on("value", userProfileSnapshot => {
       this.userProfile = userProfileSnapshot.val();
       let image = document.getElementsByClassName("background");
-      image[0].setAttribute("style", "height: 200px; background:no-repeat center/100% url('../assets/imgs/"+this.userProfile.position+".jpg'); background-size: cover; ");
+      image[0].setAttribute("style", "height: 200px; background:no-repeat center/100% url('assets/imgs/"+this.userProfile.position+".jpg'); background-size: cover; ");
 
 
     });
