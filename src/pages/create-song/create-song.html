@@ -17,7 +17,8 @@
       <form [formGroup]="createSongForm" (submit)="createSong()" novalidate>
         <ion-item>
           <ion-label floating>Título</ion-label>
-          <ion-input type="text" formControlName="title"></ion-input>
+          <ion-input type="text" formControlName="title"
+          [class.invalid]="blur"></ion-input>
         </ion-item>
         <br>
         <ion-item>
@@ -46,11 +47,12 @@
         </ion-item>
         <ion-item>
           <ion-label floating>Letra</ion-label>
-          <ion-textarea rows="100" cols="5" autosize formControlName="lyrics" ></ion-textarea>
+          <ion-textarea rows="100" cols="5" autosize formControlName="lyrics" 
+          [class.invalid]="blur"></ion-textarea>
         </ion-item>
         <br>
 
-        <button ion-button type="submit">
+        <button ion-button type="submit" [disabled]="!createSongForm.valid">
           Agregar canción
         </button>
 

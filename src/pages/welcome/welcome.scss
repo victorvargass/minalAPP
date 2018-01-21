@@ -2,13 +2,16 @@ page-welcome {
   .slide-zoom {
     height: 100%;
   }
-
   .slide-image {
     max-height: 50%;
     max-width: 60%;
     margin: 18px 0;
   }
 
+  .welcome {
+    background: linear-gradient(to bottom right, #d50000, #f4511e);
+  }
+  
   form {
     margin-bottom: 32px;
     button {

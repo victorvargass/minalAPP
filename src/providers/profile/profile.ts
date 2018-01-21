@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import firebase from 'firebase';
+import { ToastController } from 'ionic-angular';
 
 /*
   Generated class for the ProfileProvider provider.
@@ -14,7 +15,7 @@ export class ProfileProvider {
   public userProfile:firebase.database.Reference;
   public currentUser:firebase.User;
 
-  constructor() {
+  constructor(public toastCtrl: ToastController) {
     firebase.auth().onAuthStateChanged( user => {
       if(user){
         this.currentUser = user;
@@ -33,10 +34,6 @@ export class ProfileProvider {
 
   updateName(firstName: string, lastName: string): Promise<any> {
     return this.userProfile.update({ firstName, lastName });
-  }
-
-  updateDOB(birthDate: string): Promise<any> {
-    return this.userProfile.update({ birthDate });
   }
 
   updateToken(token: string): Promise<any> {
@@ -61,7 +58,8 @@ export class ProfileProvider {
       })
   }
 
-  updatePassword(newPassword: string, oldPassword: string): Promise<any> {
+  updatePassword(oldPassword: string, newPassword: string): Promise<any> {
+    console.log(oldPassword + newPassword)
     const credential: firebase.auth.AuthCredential = firebase.auth.
     EmailAuthProvider.credential(
       this.currentUser.email,
@@ -71,7 +69,11 @@ export class ProfileProvider {
       .reauthenticateWithCredential(credential)
       .then(user => {
         this.currentUser.updatePassword(newPassword).then(user => {
-          console.log('Password Changed')
+          let toast = this.toastCtrl.create({
+            message: 'Contraseña cambiada con éxito',
+            duration: 3000
+          });
+          toast.present();
         });
       })
       .catch(error => {

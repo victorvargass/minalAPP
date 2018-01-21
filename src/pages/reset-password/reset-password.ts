@@ -42,18 +42,20 @@ export class ResetPasswordPage {
     this.authProvider.resetPassword(this.resetPasswordForm.value.email)
       .then((user) => {
         let alert = this.alertCtrl.create({
-          message: "Se ha enviado un Link para restablecer tu contraseña a tu email.",
+          message: "Se ha enviado un link para restablecer tu contraseña a tu email.",
           buttons: [
             {
               text: "Ok",
               role: 'cancel',
-              handler: () => { this.navCtrl.pop(); }
+              handler: () => { 
+                this.navCtrl.pop(); 
+              }
             }
           ]
         });
         alert.present();
       }, (error) => {
-        var errorMessage: string = error.message;
+        var errorMessage = "No existe un usuario registrado con este correo."
         let errorAlert = this.alertCtrl.create({
           message: errorMessage,
           buttons: [{ text: "Ok", role: 'cancel' }]
